@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ShoppingBag, Search, Recycle, History, Sparkles, Timer, 
+import { Recycle, History, Sparkles, Timer, 
   ArrowRight, ShieldCheck, Truck, RotateCcw, Camera 
 } from 'lucide-react';
 import LoadingScreen from '../components/LoadingScreen';
 import BackToTop from '../components/BackToTop';
 import AuthOverlay from '../components/AuthOverlay';
-import { Link } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 
 const CuratedThrift: React.FC = () => {
   const [loading, setLoading] = useState(true);
@@ -38,29 +37,7 @@ const CuratedThrift: React.FC = () => {
               <a href="#" className="underline hover:text-blue-400 transition-colors">Sell your pieces</a>
             </div>
 
-            {/* 2. NAVIGATION */}
-            <nav className="border-b border-black/5 py-6 px-6 md:px-12 flex justify-between items-center sticky top-0 bg-[#FDFCF9]/80 backdrop-blur-md z-40">
-              <h1 className="text-2xl font-black tracking-tighter uppercase italic">E - UKAY</h1>
-              <div className="hidden md:flex gap-10 text-[11px] font-bold uppercase tracking-widest">
-                <Link to="/archives" className="hover:line-through transition-all">Archives</Link>
-                <Link to="/collections" className="hover:line-through transition-all">Collections</Link>
-                <Link to="/journal" className="hover:line-through transition-all">Journal</Link>
-              </div>
-              <div className="flex items-center gap-6">
-                <Search size={20} className="cursor-pointer" />
-  {/* New Account Trigger */}
-  <button 
-    onClick={() => setIsAuthOpen(true)} 
-    className="text-[10px] font-black uppercase tracking-widest hover:text-blue-600 transition-colors"
-  >
-    Account
-  </button>
-                <div className="relative cursor-pointer group">
-                  <ShoppingBag size={20} className="group-hover:rotate-12 transition-transform" />
-                  <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">3</span>
-                </div>
-              </div>
-            </nav>
+            <Navbar onAccountClick={() => setIsAuthOpen(true)} />
 
             {/* 3. HERO SECTION */}
             <header className="px-6 md:px-12 py-12 grid md:grid-cols-2 gap-8 items-center border-b border-black/5">
